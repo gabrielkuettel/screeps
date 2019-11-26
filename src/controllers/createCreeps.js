@@ -32,7 +32,7 @@ class createCreep {
 			excessCreeps.forEach(creep => creep.suicide());
 		}
 
-		return `We have ${count} / ${this.limit} ${this.role}(s)`;
+		return `${count} / ${this.limit} ${this.role}(s)`;
 	}
 
 	ref() {
