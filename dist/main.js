@@ -4,8 +4,6 @@ const roleUpgrader = require("roles_upgrader");
 const roleBuilder = require("roles_builder");
 
 module.exports.loop = function() {
-	console.log("---TICK---");
-
 	for (var name in Memory.creeps) {
 		if (!Game.creeps[name]) {
 			delete Memory.creeps[name];
@@ -13,14 +11,15 @@ module.exports.loop = function() {
 		}
 	}
 
-	const harvesters = new createCreeps({ role: "harvester", limit: 10 });
-	harvesters.spawn();
-
+	const harvesters = new createCreeps({ role: "harvester", limit: 2 });
 	const upgraders = new createCreeps({ role: "upgrader", limit: 1 });
-	upgraders.spawn();
-
 	const builders = new createCreeps({ role: "builder", limit: 2 });
-	builders.spawn();
+
+	console.log(`
+      ${harvesters.spawn()}
+      ${upgraders.spawn()}
+      ${builders.spawn()} 
+   `);
 
 	for (var name in Game.creeps) {
 		var creep = Game.creeps[name];

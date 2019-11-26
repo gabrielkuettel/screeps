@@ -17,23 +17,22 @@ class createCreep {
 		}
 
 		const spawnLocation = Game.spawns[this.location];
+		const spawnEnergy = spawnLocation.store[RESOURCE_ENERGY];
+		const count = this.count();
 
-		if (this.count() < this.limit) {
+		if (count < this.limit && spawnEnergy >= 300) {
 			const newName = `${this.role}-${Game.time}`;
-			const status = spawnLocation.spawnCreep(this.abilities, newName, {
+			return spawnLocation.spawnCreep(this.abilities, newName, {
 				memory: { role: this.role }
 			});
-			console.log(`Spawn queue: ${this.role}. Status: ${status}`);
 		}
 
-		if (this.count() > this.limit) {
+		if (count > this.limit) {
 			const excessCreeps = this.ref().slice(0, this.limit);
 			excessCreeps.forEach(creep => creep.suicide());
 		}
 
-		return console.log(
-			`We have ${this.count()} / ${this.limit} ${this.role}(s)`
-		);
+		return `We have ${count} / ${this.limit} ${this.role}(s)`;
 	}
 
 	ref() {
