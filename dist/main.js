@@ -14,8 +14,8 @@ module.exports.loop = function() {
 	Memory.structures = Game.structures;
 
 	const harvesters = new createCreeps({ role: "harvester", limit: 2 });
-	const upgraders = new createCreeps({ role: "upgrader", limit: 2 });
-	const builders = new createCreeps({ role: "builder", limit: 2 });
+	const upgraders = new createCreeps({ role: "upgrader", limit: 3 });
+	const builders = new createCreeps({ role: "builder", limit: 3 });
 
 	console.log(`
       ${harvesters.spawn()}
