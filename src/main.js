@@ -55,6 +55,7 @@ module.exports.loop = function() {
 		}
 	}
 	console.log(`
+      Time: ${Game.time} 
       Average: ${performance.monitor().toFixed(2)} / ${Game.cpu.limit}
       Tick: ${Game.cpu.getUsed().toFixed(2)}
    `);
