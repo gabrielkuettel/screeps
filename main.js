@@ -3,6 +3,7 @@ var roleUpgrader = require("roles/role.upgrader");
 var roleBuilder = require("roles/role.builder");
 
 module.exports.loop = function() {
+	console.log("am I working?");
 	var tower = Game.getObjectById("TOWER_ID");
 	if (tower) {
 		var closestDamagedStructure = tower.pos.findClosestByRange(
