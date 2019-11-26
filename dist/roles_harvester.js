@@ -13,11 +13,6 @@ var roleHarvester = {
 			}
 		});
 
-		console.log(`
-         sources ${sources.length}
-         targets ${targets.length}
-      `);
-
 		if (creep.store.getFreeCapacity() > 0) {
 			creep.say("⛏️ Mine");
 			if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {

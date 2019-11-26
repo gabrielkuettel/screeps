@@ -1,9 +1,9 @@
-class createCreep {
+class CreateCreep {
 	constructor({
 		role = "harvester",
 		limit = "1",
 		abilities = [WORK, CARRY, MOVE],
-		location = "Home"
+		location = "Spawn1"
 	}) {
 		this.role = role;
 		this.limit = limit;
@@ -48,4 +48,4 @@ class createCreep {
 	}
 }
 
-module.exports = createCreep;
+module.exports = CreateCreep;

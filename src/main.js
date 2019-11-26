@@ -1,9 +1,12 @@
-const createCreeps = require("controllers_createCreeps");
+const createCreeps = require("controllers_CreateCreeps");
 const roleHarvester = require("roles_harvester");
 const roleUpgrader = require("roles_upgrader");
 const roleBuilder = require("roles_builder");
+const Performance = require("performance_Performance");
 
 module.exports.loop = function() {
+	const performance = new Performance();
+
 	for (var name in Memory.creeps) {
 		if (!Game.creeps[name]) {
 			delete Memory.creeps[name];
@@ -11,16 +14,14 @@ module.exports.loop = function() {
 		}
 	}
 
-	Memory.structures = Game.structures;
-
-	const harvesters = new createCreeps({ role: "harvester", limit: 2 });
-	const upgraders = new createCreeps({ role: "upgrader", limit: 3 });
-	const builders = new createCreeps({ role: "builder", limit: 3 });
+	const createHarvesters = new createCreeps({ role: "harvester", limit: 2 });
+	const createUpgraders = new createCreeps({ role: "upgrader", limit: 3 });
+	const createBuilders = new createCreeps({ role: "builder", limit: 3 });
 
 	console.log(`
-      ${harvesters.spawn()}
-      ${upgraders.spawn()}
-      ${builders.spawn()} 
+      ${createHarvesters.spawn()}
+      ${createUpgraders.spawn()}
+      ${createBuilders.spawn()} 
    `);
 
 	for (var name in Game.creeps) {
@@ -53,5 +54,8 @@ module.exports.loop = function() {
 			tower.attack(closestHostile);
 		}
 	}
-	console.log(`----- CPU LIMIT: ${Game.cpu.getUsed()} / ${Game.cpu.limit}`);
+	console.log(`
+      Average: ${performance.monitor().toFixed(2)} / ${Game.cpu.limit}
+      Tick: ${Game.cpu.getUsed().toFixed(2)}
+   `);
 };
