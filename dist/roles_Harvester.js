@@ -47,36 +47,9 @@ class Harvester extends Creep {
 		}
 
 		if (!harvesting) {
-			return this.deposit();
+			return this.drop();
+			// return this.deposit();
 		}
-	}
-
-	deposit(index = 0) {
-		this.setState({ action: "➡️" });
-		const targets = this.creep.room.find(FIND_STRUCTURES, {
-			filter: structure => {
-				return (
-					(structure.structureType == STRUCTURE_EXTENSION ||
-						structure.structureType == STRUCTURE_SPAWN ||
-						structure.structureType == STRUCTURE_TOWER) &&
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0
-				);
-			}
-		});
-
-		if (targets.length > 0) {
-			if (
-				this.creep.transfer(targets[index], RESOURCE_ENERGY) ==
-				ERR_NOT_IN_RANGE
-			) {
-				this.creep.moveTo(targets[index]);
-			}
-		} else {
-			this.setState({ action: undefined });
-			this.creep.moveTo(targets[index]);
-		}
-
-		return targets[index];
 	}
 }
 

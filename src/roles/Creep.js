@@ -18,6 +18,45 @@ class Creep {
 		}
 	}
 
+	deposit(index = 0) {
+		this.setState({ action: "➡️" });
+		const targets = this.creep.room.find(FIND_STRUCTURES, {
+			filter: structure => {
+				return (
+					(structure.structureType == STRUCTURE_EXTENSION ||
+						structure.structureType == STRUCTURE_SPAWN ||
+						structure.structureType == STRUCTURE_TOWER) &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0
+				);
+			}
+		});
+
+		if (targets.length > 0) {
+			if (
+				this.creep.transfer(targets[index], RESOURCE_ENERGY) ==
+				ERR_NOT_IN_RANGE
+			) {
+				this.creep.moveTo(targets[index]);
+			}
+		} else {
+			this.setState({ action: undefined });
+			this.creep.moveTo(targets[index]);
+		}
+
+		return targets[index];
+	}
+
+	drop(resource) {
+		this.setState({ action: "💧" });
+		if (resource) {
+			this.creep.drop(resource);
+		} else {
+			for (const resourceType in this.creep.carry) {
+				this.creep.drop(resourceType);
+			}
+		}
+	}
+
 	recycle() {
 		this.setState({ action: "💀" });
 		const { name } = this.creep;

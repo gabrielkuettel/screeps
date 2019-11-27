@@ -8,23 +8,41 @@ module.exports.loop = function() {
 
 	const createHarvesters = new CreateCreeps({
 		role: "harvester",
-		limit: 5,
-		abilities: [WORK, WORK, WORK, CARRY, MOVE]
+		limit: 3,
+		abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
 	});
-	const createUpgraders = new CreateCreeps({ role: "upgrader", limit: 4 });
+	const createUpgraders = new CreateCreeps({ role: "upgrader", limit: 3 });
 	const createBuilders = new CreateCreeps({
 		role: "builder",
-		limit: 0,
-		abilities: [WORK, CARRY, MOVE, MOVE, MOVE, MOVE]
+		limit: 0
+		// abilities: [WORK, CARRY, MOVE, MOVE, MOVE, MOVE]
 	});
-	const createScouts = new CreateCreeps({ role: "scout", limit: 1 });
-	const createRepairer = new CreateCreeps({ role: "repairer", limit: 10 });
+	const createScouts = new CreateCreeps({ role: "scout", limit: 0 });
+	const createRepairer = new CreateCreeps({ role: "repairer", limit: 5 });
+	const createHauler = new CreateCreeps({
+		role: "hauler",
+		limit: 2,
+		abilities: [
+			CARRY,
+			CARRY,
+			CARRY,
+			CARRY,
+			CARRY,
+			MOVE,
+			MOVE,
+			MOVE,
+			MOVE,
+			MOVE,
+			MOVE
+		]
+	});
 
-	createHarvesters.spawn({ log: true });
-	createUpgraders.spawn({ log: true });
-	createBuilders.spawn({ log: true });
-	createScouts.spawn({ log: true });
-	createRepairer.spawn({ log: true });
+	createHarvesters.spawn({ log: false });
+	createUpgraders.spawn({ log: false });
+	createBuilders.spawn({ log: false });
+	createScouts.spawn({ log: false });
+	createRepairer.spawn({ log: false });
+	createHauler.spawn({ log: false });
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();

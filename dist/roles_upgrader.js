@@ -22,20 +22,20 @@ var roleUpgrader = {
 		}
 
 		if (creep.memory.upgrading) {
-			creep.say("⚡ upgrade");
+			creep.say("⚡");
 			if (
 				creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE
 			) {
-				creep.say("🚶🏼 Omw");
+				// creep.say("🚶🏼 Omw");
 				creep.moveTo(creep.room.controller, {
 					visualizePathStyle: { stroke: "#ffffff" }
 				});
 			}
 		} else {
-			creep.say("🔄 harvest");
+			creep.say("🔄");
 			var sources = creep.room.find(FIND_SOURCES);
 			if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-				creep.say("🚶🏼 Omw");
+				// creep.say("🚶🏼 Omw");
 				creep.moveTo(sources[1], {
 					visualizePathStyle: { stroke: "#ffaa00" }
 				});

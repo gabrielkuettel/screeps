@@ -3,6 +3,7 @@ const roleBuilder = require("roles_builder");
 const Harvester = require("roles_Harvester");
 const Scout = require("roles_Scout");
 const Repairer = require("roles_Repairer");
+const Hauler = require("roles_Hauler");
 
 class ManageCreeps {
 	constructor(state = {}) {
@@ -37,6 +38,10 @@ class ManageCreeps {
 			if (creep.memory.role == "repairer") {
 				const repairer = new Repairer(creep, { log: false, talk: true });
 				repairer.run();
+			}
+			if (creep.memory.role == "hauler") {
+				const hauler = new Hauler(creep, { log: false, talk: true });
+				hauler.run();
 			}
 		}
 	}
