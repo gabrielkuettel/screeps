@@ -15,7 +15,7 @@ class Performance {
 			}
 
 			const sum = Memory.performance.reduce((a, b) => a + b);
-			const average = sum / Memory.performance.length;
+			const average = (sum / Memory.performance.length).toFixed(2);
 			return average;
 		}
 	}

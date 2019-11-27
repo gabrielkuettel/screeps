@@ -1,9 +1,12 @@
-const roleHarvester = require("roles_harvester");
 const roleUpgrader = require("roles_upgrader");
 const roleBuilder = require("roles_builder");
+const Harvester = require("roles_Harvester");
+const Scout = require("roles_Scout");
+const Repairer = require("roles_Repairer");
 
 class ManageCreeps {
-	constructor() {
+	constructor(state = {}) {
+		this.state = state;
 		this.creeps = Game.creeps;
 	}
 
@@ -16,14 +19,24 @@ class ManageCreeps {
 	assign() {
 		for (let id in this.creeps) {
 			const creep = this.creeps[id];
+			creep.memory.working = true;
 			if (creep.memory.role == "harvester") {
-				roleHarvester.run(creep);
+				const harvester = new Harvester(creep, { log: false, talk: true });
+				harvester.run();
 			}
 			if (creep.memory.role == "upgrader") {
 				roleUpgrader.run(creep);
 			}
 			if (creep.memory.role == "builder") {
 				roleBuilder.run(creep);
+			}
+			if (creep.memory.role == "scout") {
+				const scout = new Scout(creep, { log: false, talk: true });
+				scout.run();
+			}
+			if (creep.memory.role == "repairer") {
+				const repairer = new Repairer(creep, { log: false, talk: true });
+				repairer.run();
 			}
 		}
 	}

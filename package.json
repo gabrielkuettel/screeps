@@ -11,6 +11,8 @@
 		"grunt-screeps": "^1.4.0"
 	},
 	"dependencies": {
+		"@types/lodash": "^4.14.149",
+		"@types/screeps": "^2.5.5",
 		"grunt-contrib-concat": "^1.0.1",
 		"grunt-file-append": "0.0.7",
 		"grunt-jsbeautifier": "^0.2.13"

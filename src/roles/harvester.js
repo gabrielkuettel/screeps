@@ -1,8 +1,59 @@
-var roleHarvester = {
-	/** @param {Creep} creep **/
-	run: function(creep) {
-		const sources = creep.room.find(FIND_SOURCES);
-		const targets = creep.room.find(FIND_STRUCTURES, {
+const Creep = require("roles_Creep");
+
+// inherits
+// this.creep, this.state
+// this.recycle(), this.logger(), this.setState()
+
+class Harvester extends Creep {
+	constructor(creep, newState = null) {
+		super(creep);
+		this.newState = newState;
+	}
+
+	run() {
+		this.controller();
+		this.setState(this.newState);
+	}
+
+	controller() {
+		const { terminate, log, talk, harvesting, freeCapacity } = this.state;
+
+		if (log) {
+			this.logger([
+				"log",
+				"terminate",
+				"freeCapacity",
+				"harvesting",
+				"action"
+			]);
+		}
+
+		if (talk) {
+			this.talk();
+		}
+
+		if (terminate === true) {
+			return this.recycle();
+		}
+
+		if (freeCapacity > 0) {
+			this.setState({ harvesting: true });
+		} else if (freeCapacity === 0) {
+			this.setState({ harvesting: false });
+		}
+
+		if (harvesting) {
+			return this.harvest(1);
+		}
+
+		if (!harvesting) {
+			return this.deposit();
+		}
+	}
+
+	deposit(index = 0) {
+		this.setState({ action: "➡️" });
+		const targets = this.creep.room.find(FIND_STRUCTURES, {
 			filter: structure => {
 				return (
 					(structure.structureType == STRUCTURE_EXTENSION ||
@@ -13,27 +64,20 @@ var roleHarvester = {
 			}
 		});
 
-		if (creep.store.getFreeCapacity() > 0) {
-			creep.say("⛏️ Mine");
-			if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-				creep.say("🚶🏼 Omw");
-				creep.moveTo(sources[1], {
-					visualizePathStyle: { stroke: "#ffaa00" }
-				});
+		if (targets.length > 0) {
+			if (
+				this.creep.transfer(targets[index], RESOURCE_ENERGY) ==
+				ERR_NOT_IN_RANGE
+			) {
+				this.creep.moveTo(targets[index]);
 			}
 		} else {
-			creep.say("➡️ Deliver");
-			if (targets.length > 0) {
-				if (
-					creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE
-				) {
-					creep.moveTo(targets[0], {
-						visualizePathStyle: { stroke: "#ffffff" }
-					});
-				}
-			}
+			this.setState({ action: undefined });
+			this.creep.moveTo(targets[index]);
 		}
-	}
-};
 
-module.exports = roleHarvester;
+		return targets[index];
+	}
+}
+
+module.exports = Harvester;
