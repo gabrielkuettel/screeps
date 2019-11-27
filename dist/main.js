@@ -14,8 +14,8 @@ module.exports.loop = function() {
 	const createUpgraders = new CreateCreeps({ role: "upgrader", limit: 3 });
 	const createBuilders = new CreateCreeps({
 		role: "builder",
-		limit: 0
-		// abilities: [WORK, CARRY, MOVE, MOVE, MOVE, MOVE]
+		limit: 2,
+		abilities: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
 	});
 	const createScouts = new CreateCreeps({ role: "scout", limit: 0 });
 	const createRepairer = new CreateCreeps({ role: "repairer", limit: 5 });
