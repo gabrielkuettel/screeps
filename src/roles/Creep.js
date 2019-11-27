@@ -18,6 +18,16 @@ class Creep {
 		}
 	}
 
+	haul() {
+		this.setState({ action: "🧺" });
+		const target = this.creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
+		if (target && this.creep.pickup(target) === ERR_NOT_IN_RANGE) {
+			this.creep.moveTo(target);
+		} else {
+			this.setState({ action: undefined });
+		}
+	}
+
 	deposit(index = 0) {
 		this.setState({ action: "➡️" });
 		const targets = this.creep.room.find(FIND_STRUCTURES, {

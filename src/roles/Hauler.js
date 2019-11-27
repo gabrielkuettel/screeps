@@ -44,16 +44,6 @@ class Hauler extends Creep {
 			return this.deposit();
 		}
 	}
-
-	haul() {
-		this.setState({ action: "🧺" });
-		const target = this.creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
-		if (target && this.creep.pickup(target) === ERR_NOT_IN_RANGE) {
-			this.creep.moveTo(target);
-		} else {
-			this.setState({ action: undefined });
-		}
-	}
 }
 
 module.exports = Hauler;

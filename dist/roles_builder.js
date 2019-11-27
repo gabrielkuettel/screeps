@@ -33,6 +33,8 @@ var roleBuilder = {
 						visualizePathStyle: { stroke: "#ffffff" }
 					});
 				}
+			} else {
+				creep.moveTo(closestSpawn);
 			}
 		} else {
 			creep.say("🔄 harvest");

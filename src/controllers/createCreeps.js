@@ -11,7 +11,7 @@ class CreateCreep {
 		this.location = location;
 	}
 
-	spawn({ log = false }) {
+	spawn() {
 		if (this.limit < 0) {
 			return null;
 		}
@@ -45,8 +45,6 @@ class CreateCreep {
 		}
 
 		const result = `*****  ${count} / ${this.limit} ${this.role}(s)`;
-
-		if (log) console.log(result);
 
 		return result;
 	}

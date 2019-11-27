@@ -4,7 +4,7 @@ const Creep = require("roles_Creep");
 // this.creep, this.state
 // this.recycle(), this.logger(), this.setState()
 
-class Hauler extends Creep {
+class Upgrader extends Creep {
 	constructor(creep, newState = null) {
 		super(creep);
 		this.newState = newState;
@@ -46,4 +46,4 @@ class Hauler extends Creep {
 	}
 }
 
-module.exports = Hauler;
+module.exports = Upgrader;

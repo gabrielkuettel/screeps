@@ -32,13 +32,10 @@ var roleUpgrader = {
 				});
 			}
 		} else {
-			creep.say("🔄");
-			var sources = creep.room.find(FIND_SOURCES);
-			if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-				// creep.say("🚶🏼 Omw");
-				creep.moveTo(sources[1], {
-					visualizePathStyle: { stroke: "#ffaa00" }
-				});
+			// this.setState({ action: "🧺" });
+			const target = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
+			if (target && creep.pickup(target) === ERR_NOT_IN_RANGE) {
+				creep.moveTo(target);
 			}
 		}
 	}

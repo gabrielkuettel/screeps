@@ -8,48 +8,58 @@ module.exports.loop = function() {
 
 	const createHarvesters = new CreateCreeps({
 		role: "harvester",
-		limit: 3,
-		abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
+		limit: 1,
+		// abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
+		abilities: [WORK, MOVE, CARRY]
 	});
-	const createUpgraders = new CreateCreeps({ role: "upgrader", limit: 3 });
+	const createUpgraders = new CreateCreeps({
+		role: "upgrader",
+		limit: 1,
+		abilities: [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE]
+	});
 	const createBuilders = new CreateCreeps({
 		role: "builder",
-		limit: 2,
+		limit: 1,
 		abilities: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
 	});
 	const createScouts = new CreateCreeps({ role: "scout", limit: 0 });
-	const createRepairer = new CreateCreeps({ role: "repairer", limit: 4 });
+	const createRepairer = new CreateCreeps({
+		role: "repairer",
+		limit: 1,
+		abilities: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
+	});
 	const createHauler = new CreateCreeps({
 		role: "hauler",
-		limit: 2,
-		abilities: [
-			CARRY,
-			CARRY,
-			CARRY,
-			CARRY,
-			CARRY,
-			MOVE,
-			MOVE,
-			MOVE,
-			MOVE,
-			MOVE,
-			MOVE
-		]
+		limit: 1,
+		abilities: [WORK, MOVE, CARRY]
+		// abilities: [
+		// 	CARRY,
+		// 	CARRY,
+		// 	CARRY,
+		// 	CARRY,
+		// 	CARRY,
+		// 	MOVE,
+		// 	MOVE,
+		// 	MOVE,
+		// 	MOVE,
+		// 	MOVE,
+		// 	MOVE
+		// ]
 	});
 
-	createHarvesters.spawn({ log: false });
-	createUpgraders.spawn({ log: false });
-	createBuilders.spawn({ log: false });
-	createScouts.spawn({ log: false });
-	createRepairer.spawn({ log: false });
-	createHauler.spawn({ log: false });
+	console.log(createHarvesters.spawn());
+	console.log(createUpgraders.spawn());
+	console.log(createBuilders.spawn());
+	console.log(createScouts.spawn());
+	console.log(createRepairer.spawn());
+	console.log(createHauler.spawn());
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
 
 	console.log(`
       Time: ${Game.time} 
-      Average: ${performance.monitor(10)} / ${Game.cpu.limit}
+      Average: ${performance.monitor(100)} / ${Game.cpu.limit}
       Tick: ${Game.cpu.getUsed().toFixed(2)}
    `);
 };
