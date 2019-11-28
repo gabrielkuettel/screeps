@@ -39,7 +39,7 @@ module.exports.loop = function() {
 	});
 	const createHauler = new CreateCreeps({
 		role: "hauler",
-		limit: 4,
+		limit: 6,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [
 		// 	CARRY,
