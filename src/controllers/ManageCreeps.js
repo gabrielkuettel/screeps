@@ -57,7 +57,7 @@ class ManageCreeps {
 			}
 
 			if (role == "hauler") {
-				const hauler = new Hauler(creep, { log: false, talk: false });
+				const hauler = new Hauler(creep, { log: false, talk: true });
 				hauler.run();
 			}
 

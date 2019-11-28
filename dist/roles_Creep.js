@@ -35,7 +35,8 @@ class Creep {
 		let ratio = (energy / capacity) * 100;
 
 		if (ratio < 90) {
-			return this.setState({ action: "⌛" });
+			this.setState({ action: "⌛" });
+			return this.creep.moveTo(base);
 		} else {
 			this.setState({ action: "🔋" });
 			if (this.creep.withdraw(base, resource) == ERR_NOT_IN_RANGE) {

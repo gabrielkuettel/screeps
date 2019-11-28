@@ -26,7 +26,7 @@ class Hauler extends Creep {
 			this.talk();
 		}
 
-		if (this.creep.ticksToLive < 30) {
+		if (this.creep.ticksToLive < 50) {
 			this.setState({ terminate: true });
 		}
 
