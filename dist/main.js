@@ -8,7 +8,7 @@ module.exports.loop = function() {
 
 	const createHarvesters = new CreateCreeps({
 		role: "harvester",
-		limit: 3,
+		limit: 4,
 		// abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
 		abilities: [WORK, MOVE, CARRY]
 	});
@@ -33,7 +33,7 @@ module.exports.loop = function() {
 	});
 	const createHauler = new CreateCreeps({
 		role: "hauler",
-		limit: 2,
+		limit: 4,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [
 		// 	CARRY,

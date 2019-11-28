@@ -1,52 +1,75 @@
-var roleBuilder = {
-	/** @param {Creep} creep **/
-	run: function(creep) {
-		let { building } = creep.memory;
+const Creep = require("roles_Creep");
 
-		if (creep.memory.terminate) {
-			creep.say("💀");
-			const closestSpawn = creep.pos.findClosestByPath(FIND_MY_SPAWNS);
-			if (closestSpawn.recycleCreep(creep) === ERR_NOT_IN_RANGE) {
-				creep.memory.terminate = true;
-				creep.moveTo(closestSpawn, {
-					visualizePathStyle: { stroke: "#FF0000" }
-				});
-			}
-			return;
+// inherits
+// this.creep, this.state
+// this.recycle(), this.logger(), this.setState()
+
+class Builder extends Creep {
+	constructor(creep, newState = null) {
+		super(creep);
+		this.newState = newState;
+	}
+
+	run() {
+		this.controller();
+		this.setState(this.newState);
+	}
+
+	controller() {
+		const {
+			terminate,
+			log,
+			talk,
+			building,
+			freeCapacity,
+			usedCapacity
+		} = this.state;
+
+		if (log) {
+			this.logger([
+				"log",
+				"terminate",
+				"freeCapacity",
+				"building",
+				"action"
+			]);
 		}
 
-		if (building && creep.store[RESOURCE_ENERGY] == 0) {
-			creep.memory.building = false;
+		if (talk) {
+			this.talk();
 		}
 
-		if (!building && creep.store.getFreeCapacity() == 0) {
-			creep.memory.building = true;
+		if (terminate === true) {
+			return this.recycle();
+		}
+
+		if (building && usedCapacity === 0) {
+			this.setState({ building: false });
+		}
+
+		if (!building && freeCapacity === 0) {
+			this.setState({ building: true });
 		}
 
 		if (building) {
-			creep.say("🚧 build");
-			let targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-			if (targets.length) {
-				if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-					// creep.say(`🚶🏼${targets[0].pos.x},${targets[0].pos.y}`);
-					creep.moveTo(targets[0], {
-						visualizePathStyle: { stroke: "#ffffff" }
-					});
-				}
-			} else {
-				creep.moveTo(closestSpawn);
-			}
+			return this.build();
 		} else {
-			creep.say("🔄 harvest");
-			let sources = creep.room.find(FIND_SOURCES);
-			if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-				// creep.say(`🚶🏼${sources[0].pos.x},${sources[0].pos.y}`);
-				creep.moveTo(sources[0], {
-					visualizePathStyle: { stroke: "#ffaa00" }
+			// return this.harvest();
+			return this.pickupFromBase(Game.spawns["Spawn1"], RESOURCE_ENERGY);
+		}
+	}
+
+	build() {
+		this.setState({ action: "🚧" });
+		const targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
+		if (targets.length) {
+			if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(targets[0], {
+					visualizePathStyle: { stroke: "#ffffff" }
 				});
 			}
 		}
 	}
-};
+}
 
-module.exports = roleBuilder;
+module.exports = Builder;

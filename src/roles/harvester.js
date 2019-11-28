@@ -38,7 +38,7 @@ class Harvester extends Creep {
 
 		if (freeCapacity > 0) {
 			this.setState({ harvesting: true });
-		} else if (freeCapacity === 0) {
+		} else {
 			this.setState({ harvesting: false });
 		}
 

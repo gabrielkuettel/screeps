@@ -3,6 +3,7 @@ class Creep {
 		this.creep = creep;
 		this.state = creep.memory;
 		this.state.freeCapacity = this.creep.store.getFreeCapacity();
+		this.state.usedCapacity = this.creep.store.getUsedCapacity();
 	}
 
 	harvest(index = 0) {
