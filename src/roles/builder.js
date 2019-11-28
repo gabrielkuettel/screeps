@@ -13,6 +13,7 @@ class Builder extends Creep {
 	run() {
 		this.controller();
 		this.setState(this.newState);
+		// console.log(this.creep.ticksToLive);
 	}
 
 	controller() {

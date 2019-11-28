@@ -30,9 +30,17 @@ class Creep {
 	}
 
 	pickupFromBase(base, resource) {
-		this.setState({ action: "🔋" });
-		if (this.creep.withdraw(base, resource) == ERR_NOT_IN_RANGE) {
-			return this.creep.moveTo(base);
+		let energy = base.store[RESOURCE_ENERGY];
+		let capacity = base.store.getCapacity(RESOURCE_ENERGY);
+		let ratio = (energy / capacity) * 100;
+
+		if (ratio <= 75) {
+			return this.setState({ action: "⌛" });
+		} else {
+			this.setState({ action: "🔋" });
+			if (this.creep.withdraw(base, resource) == ERR_NOT_IN_RANGE) {
+				return this.creep.moveTo(base);
+			}
 		}
 	}
 

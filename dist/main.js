@@ -56,10 +56,10 @@ module.exports.loop = function() {
 		// ]
 	});
 
-	console.log(createUpgraders.spawn());
 	console.log(createBuilders.spawn());
 	console.log(createScouts.spawn());
 	console.log(createRepairer.spawn());
+	console.log(createUpgraders.spawn());
 	console.log(createHarvestersSecondary.spawn());
 	console.log(createHauler.spawn());
 	console.log(createHarvesters.spawn());
