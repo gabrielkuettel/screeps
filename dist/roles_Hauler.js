@@ -32,7 +32,9 @@ class Hauler extends Creep {
 
 		if (freeCapacity > 0) {
 			this.setState({ hauling: true });
-		} else if (freeCapacity === 0) {
+		}
+
+		if (freeCapacity === 0) {
 			this.setState({ hauling: false });
 		}
 

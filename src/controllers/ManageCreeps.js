@@ -40,12 +40,12 @@ class ManageCreeps {
 				repairer.run();
 			}
 			if (creep.memory.role == "hauler") {
-				const hauler = new Hauler(creep, { log: false, talk: true });
+				const hauler = new Hauler(creep, { log: true, talk: true });
 				hauler.run();
 			}
 
 			if (creep.memory.role == "upgrader") {
-				const upgrader = new Upgrader(creep, { log: true, talk: true });
+				const upgrader = new Upgrader(creep, { log: false, talk: false });
 				upgrader.run();
 			}
 		}

@@ -32,23 +32,19 @@ class Upgrader extends Creep {
 			return this.recycle();
 		}
 
-		const usedCapacity = this.creep.store.getUsedCapacity();
-		const totalCapacity = this.creep.store.getCapacity();
+		const usedCapacity = this.creep.store[RESOURCE_ENERGY];
 
-		if (usedCapacity === totalCapacity) {
-			this.setState({ upgrading: true });
-		} else if (usedCapacity < totalCapacity) {
-			this.setState({ upgrading: true });
-		} else {
+		if (upgrading && usedCapacity === 0) {
 			this.setState({ upgrading: false });
+		}
+
+		if (!upgrading && freeCapacity === 0) {
+			this.setState({ upgrading: true });
 		}
 
 		if (upgrading) {
 			return this.upgrade();
-		}
-
-		if (!upgrading) {
-			// return this.harvest();dw
+		} else {
 			return this.pickupFromBase(Game.spawns["Spawn1"], RESOURCE_ENERGY);
 		}
 	}
