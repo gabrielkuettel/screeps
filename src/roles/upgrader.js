@@ -28,6 +28,10 @@ class Upgrader extends Creep {
 			this.talk();
 		}
 
+		if (this.creep.ticksToLive < 30) {
+			this.setState({ terminate: true });
+		}
+
 		if (terminate === true) {
 			return this.recycle();
 		}
