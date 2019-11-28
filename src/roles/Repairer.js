@@ -47,7 +47,8 @@ class Repairer extends Creep {
 		}
 
 		if (!repairing) {
-			return this.harvest();
+			// return this.harvest();
+			return this.pickupFromBase(Game.spawns["Spawn1"], RESOURCE_ENERGY);
 		}
 	}
 

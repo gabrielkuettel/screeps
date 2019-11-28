@@ -45,6 +45,7 @@ class Upgrader extends Creep {
 		if (upgrading) {
 			return this.upgrade();
 		} else {
+			// return this.harvest();
 			return this.pickupFromBase(Game.spawns["Spawn1"], RESOURCE_ENERGY);
 		}
 	}
