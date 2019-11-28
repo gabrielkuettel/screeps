@@ -20,13 +20,13 @@ module.exports.loop = function() {
 	});
 	const createUpgraders = new CreateCreeps({
 		role: "upgrader",
-		limit: 3,
+		limit: 4,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE]
 	});
 	const createBuilders = new CreateCreeps({
 		role: "builder",
-		limit: 4,
+		limit: 2,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
 	});
