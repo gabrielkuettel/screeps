@@ -39,7 +39,7 @@ module.exports.loop = function() {
 	});
 	const createHauler = new CreateCreeps({
 		role: "hauler",
-		limit: 8,
+		limit: 4,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [
 		// 	CARRY,
@@ -60,9 +60,9 @@ module.exports.loop = function() {
 	console.log(createScouts.spawn());
 	console.log(createRepairer.spawn());
 	console.log(createUpgraders.spawn());
-	console.log(createHarvestersSecondary.spawn());
-	console.log(createHauler.spawn());
 	console.log(createHarvesters.spawn());
+	console.log(createHauler.spawn());
+	console.log(createHarvestersSecondary.spawn());
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
