@@ -51,8 +51,8 @@ class HarvesterSecondary extends Creep {
 		}
 
 		if (!harvesting) {
-			return this.drop();
-			// return this.deposit();
+			// return this.drop();
+			return this.deposit();
 		}
 	}
 }
