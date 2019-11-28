@@ -28,6 +28,13 @@ class Creep {
 		}
 	}
 
+	pickupFromBase(base, resource) {
+		this.setState({ action: "🔋" });
+		if (this.creep.withdraw(base, resource) == ERR_NOT_IN_RANGE) {
+			return this.creep.moveTo(base);
+		}
+	}
+
 	deposit(index = 0) {
 		this.setState({ action: "➡️" });
 		const targets = this.creep.room.find(FIND_STRUCTURES, {

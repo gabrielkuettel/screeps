@@ -1,9 +1,9 @@
-const roleUpgrader = require("roles_upgrader");
 const roleBuilder = require("roles_builder");
 const Harvester = require("roles_Harvester");
 const Scout = require("roles_Scout");
 const Repairer = require("roles_Repairer");
 const Hauler = require("roles_Hauler");
+const Upgrader = require("roles_Upgrader");
 
 class ManageCreeps {
 	constructor(state = {}) {
@@ -25,9 +25,9 @@ class ManageCreeps {
 				const harvester = new Harvester(creep, { log: false, talk: true });
 				harvester.run();
 			}
-			if (creep.memory.role == "upgrader") {
-				roleUpgrader.run(creep);
-			}
+			// if (creep.memory.role == "upgrader") {
+			// 	roleUpgrader.run(creep);
+			// }
 			if (creep.memory.role == "builder") {
 				roleBuilder.run(creep);
 			}
@@ -42,6 +42,11 @@ class ManageCreeps {
 			if (creep.memory.role == "hauler") {
 				const hauler = new Hauler(creep, { log: false, talk: true });
 				hauler.run();
+			}
+
+			if (creep.memory.role == "upgrader") {
+				const upgrader = new Upgrader(creep, { log: true, talk: true });
+				upgrader.run();
 			}
 		}
 	}

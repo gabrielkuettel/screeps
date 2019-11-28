@@ -1,44 +1,69 @@
-var roleUpgrader = {
-	/** @param {Creep} creep **/
-	run: function(creep) {
-		//termination
-		if (creep.memory.terminate) {
-			creep.say("💀");
-			const closestSpawn = creep.pos.findClosestByPath(FIND_MY_SPAWNS);
-			if (closestSpawn.recycleCreep(creep) === ERR_NOT_IN_RANGE) {
-				creep.memory.terminate = true;
-				creep.moveTo(closestSpawn, {
-					visualizePathStyle: { stroke: "#FF0000" }
-				});
-			}
-			return;
+const Creep = require("roles_Creep");
+
+class Upgrader extends Creep {
+	constructor(creep, newState = null) {
+		super(creep);
+		this.newState = newState;
+	}
+
+	run() {
+		this.controller();
+		this.setState(this.newState);
+	}
+
+	controller() {
+		const { terminate, log, talk, upgrading, freeCapacity } = this.state;
+
+		if (log) {
+			this.logger([
+				"log",
+				"terminate",
+				"freeCapacity",
+				"upgrading",
+				"action"
+			]);
 		}
 
-		if (creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
-			creep.memory.upgrading = false;
-		}
-		if (!creep.memory.upgrading && creep.store.getFreeCapacity() == 0) {
-			creep.memory.upgrading = true;
+		if (talk) {
+			this.talk();
 		}
 
-		if (creep.memory.upgrading) {
-			creep.say("⚡");
-			if (
-				creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE
-			) {
-				// creep.say("🚶🏼 Omw");
-				creep.moveTo(creep.room.controller, {
-					visualizePathStyle: { stroke: "#ffffff" }
-				});
-			}
+		if (terminate === true) {
+			return this.recycle();
+		}
+
+		const usedCapacity = this.creep.store.getUsedCapacity();
+		const totalCapacity = this.creep.store.getCapacity();
+
+		if (usedCapacity === totalCapacity) {
+			this.setState({ upgrading: true });
+		} else if (usedCapacity < totalCapacity) {
+			this.setState({ upgrading: true });
 		} else {
-			// this.setState({ action: "🧺" });
-			const target = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
-			if (target && creep.pickup(target) === ERR_NOT_IN_RANGE) {
-				creep.moveTo(target);
-			}
+			this.setState({ upgrading: false });
+		}
+
+		if (upgrading) {
+			return this.upgrade();
+		}
+
+		if (!upgrading) {
+			// return this.harvest();dw
+			return this.pickupFromBase(Game.spawns["Spawn1"], RESOURCE_ENERGY);
 		}
 	}
-};
 
-module.exports = roleUpgrader;
+	upgrade() {
+		this.setState({ action: "⚡" });
+		if (
+			this.creep.upgradeController(this.creep.room.controller) ==
+			ERR_NOT_IN_RANGE
+		) {
+			this.creep.moveTo(this.creep.room.controller, {
+				visualizePathStyle: { stroke: "#ffffff" }
+			});
+		}
+	}
+}
+
+module.exports = Upgrader;
