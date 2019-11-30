@@ -54,7 +54,7 @@ class Base {
 
 		if (target && target.store[RESOURCE_ENERGY] > 0) {
 			if (this.creep.withdraw(target, Resource) === ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(target);
+				return this.creep.moveTo(target);
 			}
 		} else {
 			return this.moveToFlag();
