@@ -50,7 +50,7 @@ class Gravedigger extends Base {
 
 		if (!digging) {
 			console.log("deposit now");
-			return this.deposit(0, "Flag1");
+			return this.deposit(0);
 		}
 	}
 }
