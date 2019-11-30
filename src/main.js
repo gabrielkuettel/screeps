@@ -18,7 +18,7 @@ module.exports.loop = function() {
 	});
 	const createHarvestersSecondary = new CreateCreeps({
 		role: "harvesterSecondary",
-		limit: 4,
+		limit: 3,
 		// abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
 		abilities: [WORK, CARRY, MOVE]
 	});
@@ -37,13 +37,13 @@ module.exports.loop = function() {
 	const createScouts = new CreateCreeps({ role: "scout", limit: 0 });
 	const createRepairer = new CreateCreeps({
 		role: "repairer",
-		limit: 1,
+		limit: 2,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
 	});
 	const createHauler = new CreateCreeps({
 		role: "hauler",
-		limit: 6,
+		limit: 12,
 		abilities: [WORK, MOVE, CARRY]
 		// abilities: [
 		// 	CARRY,
