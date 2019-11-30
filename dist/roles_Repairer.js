@@ -32,7 +32,7 @@ class Repairer extends Creep {
 			this.talk();
 		}
 
-		if (this.creep.ticksToLive < 50) {
+		if (this.creep.ticksToLive < 100) {
 			this.setState({ terminate: true });
 		}
 

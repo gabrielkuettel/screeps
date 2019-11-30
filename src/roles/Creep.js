@@ -89,6 +89,7 @@ class Creep {
 		const { name } = this.creep;
 
 		const closestSpawn = this.creep.pos.findClosestByPath(FIND_MY_SPAWNS);
+		console.log(closestSpawn);
 		if (closestSpawn.recycleCreep(this.creep) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(closestSpawn, {
 				visualizePathStyle: { stroke: "#FF0000" }

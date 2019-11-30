@@ -4,6 +4,10 @@ const ManageCreeps = require("controllers_ManageCreeps");
 const Performance = require("performance_Performance");
 
 module.exports.loop = function() {
+	// for (creep in Game.creeps) {
+	// 	console.log(Game.creeps[creep].name, Game.creeps[creep].ticksToLive);
+	// }
+
 	const performance = new Performance();
 
 	const createHarvesters = new CreateCreeps({
@@ -56,20 +60,20 @@ module.exports.loop = function() {
 		// ]
 	});
 
-	console.log(createBuilders.spawn());
+	createBuilders.spawn();
 	// console.log(createScouts.spawn());
-	console.log(createRepairer.spawn());
-	console.log(createUpgraders.spawn());
-	console.log(createHarvesters.spawn());
-	console.log(createHauler.spawn());
-	console.log(createHarvestersSecondary.spawn());
+	createRepairer.spawn();
+	createUpgraders.spawn();
+	createHarvesters.spawn();
+	createHauler.spawn();
+	createHarvestersSecondary.spawn();
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
 
-	console.log(`
-      Time: ${Game.time} 
-      Average: ${performance.monitor(100)} / ${Game.cpu.limit}
-      Tick: ${Game.cpu.getUsed().toFixed(2)}
-   `);
+	// console.log(`
+	//    Time: ${Game.time}
+	//    Average: ${performance.monitor(100)} / ${Game.cpu.limit}
+	//    Tick: ${Game.cpu.getUsed().toFixed(2)}
+	// `);
 };
