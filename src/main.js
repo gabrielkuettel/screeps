@@ -60,17 +60,25 @@ module.exports.loop = function() {
 		// ]
 	});
 
-	createBuilders.spawn();
-	// console.log(createScouts.spawn());
-	createRepairer.spawn();
-	createUpgraders.spawn();
-	createHarvesters.spawn();
-	createHauler.spawn();
-	createHarvestersSecondary.spawn();
+	const builders = createBuilders.spawn();
+	// const scouts = console.log(createScouts.spawn());
+	const repairers = createRepairer.spawn();
+	const upgraders = createUpgraders.spawn();
+	const harvesters = createHarvesters.spawn();
+	const haulers = createHauler.spawn();
+	const harvestersSecondary = createHarvestersSecondary.spawn();
+
+	console.log(builders);
+	console.log(repairers);
+	console.log(upgraders);
+	console.log(harvesters);
+	console.log(haulers);
+	console.log(harvestersSecondary);
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
 
+	console.log(`Tick: ${Game.cpu.getUsed().toFixed(2)}`);
 	// console.log(`
 	//    Time: ${Game.time}
 	//    Average: ${performance.monitor(100)} / ${Game.cpu.limit}

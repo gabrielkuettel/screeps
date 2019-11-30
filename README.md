@@ -1,6 +1,7 @@
 #### Commands:
 
--  `grunt`
+-  Compile: `grunt`
+-  Change branches: `grunt screeps --ptr=true --branch=development`
 
 #### Resources:
 
