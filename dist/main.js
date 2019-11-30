@@ -66,22 +66,22 @@ module.exports.loop = function() {
 		abilities: [WORK, MOVE, CARRY]
 	});
 
-	const builders = createBuilders.spawn();
 	// const scouts = console.log(createScouts.spawn());
+	const gravediggers = createGravediggers.spawn();
+	const builders = createBuilders.spawn();
 	const repairers = createRepairer.spawn();
 	const upgraders = createUpgraders.spawn();
 	const harvesters = createHarvesters.spawn();
 	const haulers = createHauler.spawn();
 	const harvestersSecondary = createHarvestersSecondary.spawn();
-	const gravediggers = createGravediggers.spawn();
 
+	console.log(gravediggers);
 	console.log(builders);
 	console.log(repairers);
 	console.log(upgraders);
 	console.log(harvesters);
 	console.log(haulers);
 	console.log(harvestersSecondary);
-	console.log(gravediggers);
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
