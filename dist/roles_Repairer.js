@@ -1,10 +1,10 @@
-const Creep = require("roles_Creep");
+const Base = require("roles_Base");
 
 // inherits
 // this.creep, this.state
 // this.recycle(), this.logger(), this.setState()
 
-class Repairer extends Creep {
+class Repairer extends Base {
 	constructor(creep, newState = null) {
 		super(creep);
 		this.newState = newState;

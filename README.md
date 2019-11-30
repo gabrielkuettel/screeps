@@ -1,7 +1,8 @@
 #### Commands:
 
 -  Compile: `grunt`
--  Change branches: `grunt screeps --ptr=true --branch=development`
+-  Configure `.screeps.json`
+-  Change branches: `grunt screeps --branch=tutorial-1`
 
 #### Resources:
 

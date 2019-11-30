@@ -1,6 +1,6 @@
-const Creep = require("roles_Creep");
+const Base = require("roles_Base");
 
-class Upgrader extends Creep {
+class Upgrader extends Base {
 	constructor(creep, newState = null) {
 		super(creep);
 		this.newState = newState;
