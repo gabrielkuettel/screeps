@@ -1,4 +1,4 @@
-const Creep = require("roles_Creep");
+const Creep = require("roles_Base");
 
 // inherits
 // this.creep, this.state

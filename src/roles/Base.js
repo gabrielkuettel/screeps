@@ -1,4 +1,4 @@
-class Creep {
+class Base {
 	constructor(creep) {
 		this.creep = creep;
 		this.state = creep.memory;
@@ -122,4 +122,4 @@ class Creep {
 	}
 }
 
-module.exports = Creep;
+module.exports = Base;
