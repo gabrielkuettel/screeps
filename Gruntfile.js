@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 	var config = require("./.screeps.json");
-	var branches = require("./.branch.json");
+	var branches = require("./.screeps.branch.json");
 	var branch = grunt.option("branch") || branches.branch || config.branch;
 	var email = grunt.option("email") || config.email;
 	var password = grunt.option("password") || config.password;
