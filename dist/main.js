@@ -3,7 +3,6 @@ const ManageCreeps = require("controllers_ManageCreeps");
 
 const Performance = require("performance_Performance");
 
-// simulation branch
 module.exports.loop = function() {
 	// for (creep in Game.creeps) {
 	// 	console.log(Game.creeps[creep].name, Game.creeps[creep].ticksToLive);
