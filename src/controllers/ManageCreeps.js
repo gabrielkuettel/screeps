@@ -5,6 +5,7 @@ const Scout = require("roles_Scout");
 const Repairer = require("roles_Repairer");
 const Hauler = require("roles_Hauler");
 const Upgrader = require("roles_Upgrader");
+const Gravedigger = require("roles_Gravedigger");
 
 class ManageCreeps {
 	constructor(state = {}) {
@@ -64,6 +65,14 @@ class ManageCreeps {
 			if (role == "upgrader") {
 				const upgrader = new Upgrader(creep, { log: false, talk: true });
 				upgrader.run();
+			}
+
+			if (role == "gravedigger") {
+				const gravedigger = new Gravedigger(creep, {
+					log: true,
+					talk: true
+				});
+				gravedigger.run();
 			}
 		}
 	}

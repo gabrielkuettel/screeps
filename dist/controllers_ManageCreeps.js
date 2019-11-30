@@ -5,6 +5,7 @@ const Scout = require("roles_Scout");
 const Repairer = require("roles_Repairer");
 const Hauler = require("roles_Hauler");
 const Upgrader = require("roles_Upgrader");
+const Gravedigger = require("roles_Gravedigger");
 
 class ManageCreeps {
 	constructor(state = {}) {
@@ -26,23 +27,35 @@ class ManageCreeps {
 			creep.memory.working = true;
 
 			if (role == "harvester") {
-				const harvester = new Harvester(creep, {
-					log: false,
-					talk: true
-				});
+				const harvester = new Harvester(
+					creep,
+					{
+						log: false,
+						talk: true
+					},
+					1000
+				);
 				harvester.run();
 			}
 
 			if (role === "harvesterSecondary") {
-				const harvester = new HarvesterSecondary(creep, {
-					log: false,
-					talk: true
-				});
+				const harvester = new HarvesterSecondary(
+					creep,
+					{
+						log: false,
+						talk: true
+					},
+					1000
+				);
 				harvester.run();
 			}
 
 			if (role == "builder") {
-				const builder = new Builder(creep, { log: false, talk: true });
+				const builder = new Builder(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				builder.run();
 			}
 
@@ -52,18 +65,34 @@ class ManageCreeps {
 			}
 
 			if (role == "repairer") {
-				const repairer = new Repairer(creep, { log: false, talk: true });
+				const repairer = new Repairer(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				repairer.run();
 			}
 
 			if (role == "hauler") {
-				const hauler = new Hauler(creep, { log: false, talk: true });
+				const hauler = new Hauler(creep, { log: false, talk: true }, 1000);
 				hauler.run();
 			}
 
 			if (role == "upgrader") {
-				const upgrader = new Upgrader(creep, { log: false, talk: true });
+				const upgrader = new Upgrader(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				upgrader.run();
+			}
+
+			if (role == "gravedigger") {
+				const gravedigger = new Gravedigger(creep, {
+					log: true,
+					talk: true
+				});
+				gravedigger.run();
 			}
 		}
 	}

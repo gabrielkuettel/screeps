@@ -5,9 +5,10 @@ const Base = require("roles_Base");
 // this.recycle(), this.logger(), this.setState()
 
 class Hauler extends Base {
-	constructor(creep, newState = null) {
+	constructor(creep, newState = null, timeToLive = 100) {
 		super(creep);
 		this.newState = newState;
+		this.timeToLive = timeToLive;
 	}
 
 	run() {
@@ -26,7 +27,7 @@ class Hauler extends Base {
 			this.talk();
 		}
 
-		if (this.creep.ticksToLive < 100) {
+		if (this.creep.ticksToLive < this.timeToLive) {
 			this.setState({ terminate: true });
 		}
 

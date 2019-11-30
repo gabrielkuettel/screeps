@@ -5,9 +5,10 @@ const Base = require("roles_Base");
 // this.recycle(), this.logger(), this.setState()
 
 class Scout extends Base {
-	constructor(creep, newState = null) {
+	constructor(creep, newState = null, timeToLive = 100) {
 		super(creep);
 		this.newState = newState;
+		this.timeToLive = timeToLive;
 	}
 
 	run() {

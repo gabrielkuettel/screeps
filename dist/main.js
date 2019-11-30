@@ -4,7 +4,7 @@ const ManageCreeps = require("controllers_ManageCreeps");
 const Performance = require("performance_Performance");
 
 module.exports.loop = function() {
-	// for (creep in Game.creeps) {
+	// for (let creep in Game.creeps) {
 	// 	console.log(Game.creeps[creep].name, Game.creeps[creep].ticksToLive);
 	// }
 
@@ -59,6 +59,12 @@ module.exports.loop = function() {
 		// 	MOVE
 		// ]
 	});
+	const createGravediggers = new CreateCreeps({
+		role: "gravedigger",
+		limit: 1,
+		// abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
+		abilities: [WORK, MOVE, CARRY]
+	});
 
 	const builders = createBuilders.spawn();
 	// const scouts = console.log(createScouts.spawn());
@@ -67,6 +73,7 @@ module.exports.loop = function() {
 	const harvesters = createHarvesters.spawn();
 	const haulers = createHauler.spawn();
 	const harvestersSecondary = createHarvestersSecondary.spawn();
+	const gravediggers = createGravediggers.spawn();
 
 	console.log(builders);
 	console.log(repairers);
@@ -74,6 +81,7 @@ module.exports.loop = function() {
 	console.log(harvesters);
 	console.log(haulers);
 	console.log(harvestersSecondary);
+	console.log(gravediggers);
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();

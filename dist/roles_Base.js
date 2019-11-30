@@ -19,13 +19,50 @@ class Base {
 		}
 	}
 
-	haul() {
-		this.setState({ action: "🧺" });
-		const target = this.creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
+	haul(source, action) {
+		const setAction = action || "🧺";
+		this.setState({ action: setAction });
+
+		const setSource = source || FIND_DROPPED_RESOURCES;
+		const target = this.creep.pos.findClosestByPath(setSource);
+
 		if (target && this.creep.pickup(target) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(target);
 		} else {
 			this.setState({ action: undefined });
+		}
+	}
+
+	moveToFlag(flag) {
+		const rallyPoint =
+			Game.flags[flag] ||
+			this.creep.pos.findClosestByPath(FIND_FLAGS) ||
+			this.creep.pos.findClosestByPath(FIND_MY_SPAWNS);
+		return this.creep.moveTo(rallyPoint);
+	}
+
+	withdrawFromSource(source, action) {
+		const setAction = action || "🧺";
+		this.setState({ action: setAction });
+
+		const setSource = source || FIND_DROPPED_RESOURCES;
+		const target = this.creep.pos.findClosestByPath(setSource);
+		const withdraw = target && this.creep.withdraw(target);
+		console.log(`
+         setAction: ${setAction}
+         setSource: ${setSource}
+         target: ${target}
+         withdraw: ${withdraw}
+      `);
+
+		if (
+			target &&
+			this.creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE
+		) {
+			this.creep.moveTo(target);
+		} else {
+			this.setState({ action: undefined });
+			return this.moveToFlag();
 		}
 	}
 
@@ -45,7 +82,7 @@ class Base {
 		}
 	}
 
-	deposit(index = 0) {
+	deposit(index = 0, flag) {
 		this.setState({ action: "➡️" });
 		const targets = this.creep.room.find(FIND_STRUCTURES, {
 			filter: structure => {
@@ -67,7 +104,7 @@ class Base {
 			}
 		} else {
 			this.setState({ action: undefined });
-			this.creep.moveTo(targets[index]);
+			return this.moveToFlag();
 		}
 
 		return targets[index];

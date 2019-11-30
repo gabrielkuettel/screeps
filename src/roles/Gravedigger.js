@@ -4,7 +4,7 @@ const Base = require("roles_Base");
 // this.creep, this.state
 // this.recycle(), this.logger(), this.setState()
 
-class HarvesterSecondary extends Base {
+class Gravedigger extends Base {
 	constructor(creep, newState = null, timeToLive = 100) {
 		super(creep);
 		this.newState = newState;
@@ -17,16 +17,10 @@ class HarvesterSecondary extends Base {
 	}
 
 	controller() {
-		const { terminate, log, talk, harvesting, freeCapacity } = this.state;
+		const { terminate, log, talk, digging, freeCapacity } = this.state;
 
 		if (log) {
-			this.logger([
-				"log",
-				"terminate",
-				"freeCapacity",
-				"harvesting",
-				"action"
-			]);
+			this.logger(["log", "terminate", "freeCapacity", "digging", "action"]);
 		}
 
 		if (talk) {
@@ -42,20 +36,23 @@ class HarvesterSecondary extends Base {
 		}
 
 		if (freeCapacity > 0) {
-			this.setState({ harvesting: true });
-		} else {
-			this.setState({ harvesting: false });
+			this.setState({ digging: true });
 		}
 
-		if (harvesting) {
-			return this.harvest(0);
+		if (freeCapacity === 0) {
+			this.setState({ digging: false });
 		}
 
-		if (!harvesting) {
-			// return this.drop();
-			return this.deposit();
+		if (digging) {
+			console.log("digging now");
+			return this.withdrawFromSource(FIND_TOMBSTONES, "⚰️", "Flag1");
+		}
+
+		if (!digging) {
+			console.log("deposit now");
+			return this.deposit(0, "Flag1");
 		}
 	}
 }
 
-module.exports = HarvesterSecondary;
+module.exports = Gravedigger;
