@@ -34,7 +34,7 @@ class Creep {
 		let capacity = base.store.getCapacity(RESOURCE_ENERGY);
 		let ratio = (energy / capacity) * 100;
 
-		if (ratio < 90) {
+		if (ratio < 99) {
 			this.setState({ action: "⌛" });
 			return this.creep.moveTo(base);
 		} else {

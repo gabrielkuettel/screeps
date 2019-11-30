@@ -16,7 +16,7 @@ module.exports.loop = function() {
 		role: "harvesterSecondary",
 		limit: 4,
 		// abilities: [WORK, WORK, WORK, WORK, MOVE, MOVE, CARRY]
-		abilities: [WORK, MOVE, CARRY]
+		abilities: [WORK, CARRY, MOVE]
 	});
 	const createUpgraders = new CreateCreeps({
 		role: "upgrader",
@@ -57,7 +57,7 @@ module.exports.loop = function() {
 	});
 
 	console.log(createBuilders.spawn());
-	console.log(createScouts.spawn());
+	// console.log(createScouts.spawn());
 	console.log(createRepairer.spawn());
 	console.log(createUpgraders.spawn());
 	console.log(createHarvesters.spawn());
