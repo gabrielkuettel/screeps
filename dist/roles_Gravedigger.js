@@ -45,7 +45,7 @@ class Gravedigger extends Base {
 
 		if (digging) {
 			console.log("digging now");
-			return this.withdrawFromSource(FIND_TOMBSTONES, "⚰️", "Flag1");
+			return this.withdrawFromSource(FIND_TOMBSTONES, "⚰️");
 		}
 
 		if (!digging) {

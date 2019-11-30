@@ -27,43 +27,63 @@ class ManageCreeps {
 			creep.memory.working = true;
 
 			if (role == "harvester") {
-				const harvester = new Harvester(creep, {
-					log: false,
-					talk: true
-				});
+				const harvester = new Harvester(
+					creep,
+					{
+						log: false,
+						talk: true
+					},
+					1000
+				);
 				harvester.run();
 			}
 
 			if (role === "harvesterSecondary") {
-				const harvester = new HarvesterSecondary(creep, {
-					log: false,
-					talk: true
-				});
+				const harvester = new HarvesterSecondary(
+					creep,
+					{
+						log: false,
+						talk: true
+					},
+					1000
+				);
 				harvester.run();
 			}
 
 			if (role == "builder") {
-				const builder = new Builder(creep, { log: false, talk: true });
+				const builder = new Builder(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				builder.run();
 			}
 
 			if (role == "scout") {
-				const scout = new Scout(creep, { log: false, talk: true });
+				const scout = new Scout(creep, { log: false, talk: true }, 1000);
 				scout.run();
 			}
 
 			if (role == "repairer") {
-				const repairer = new Repairer(creep, { log: false, talk: true });
+				const repairer = new Repairer(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				repairer.run();
 			}
 
 			if (role == "hauler") {
-				const hauler = new Hauler(creep, { log: false, talk: true });
+				const hauler = new Hauler(creep, { log: false, talk: true }, 1000);
 				hauler.run();
 			}
 
 			if (role == "upgrader") {
-				const upgrader = new Upgrader(creep, { log: false, talk: true });
+				const upgrader = new Upgrader(
+					creep,
+					{ log: false, talk: true },
+					1000
+				);
 				upgrader.run();
 			}
 

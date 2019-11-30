@@ -60,7 +60,7 @@ class ManageCreeps {
 			}
 
 			if (role == "scout") {
-				const scout = new Scout(creep, { log: false, talk: true });
+				const scout = new Scout(creep, { log: false, talk: true }, 1000);
 				scout.run();
 			}
 

@@ -20,11 +20,11 @@ class Base {
 	}
 
 	haul(source, action) {
-		const setAction = action || "🧺";
-		this.setState({ action: setAction });
-
 		const setSource = source || FIND_DROPPED_RESOURCES;
 		const target = this.creep.pos.findClosestByPath(setSource);
+
+		const setAction = action || "🧺";
+		this.setState({ action: setAction });
 
 		if (target && this.creep.pickup(target) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(target);
@@ -34,6 +34,7 @@ class Base {
 	}
 
 	moveToFlag(flag) {
+		this.setState({ action: "🏴󠁶󠁵󠁭󠁡󠁰󠁿" });
 		const rallyPoint =
 			Game.flags[flag] ||
 			this.creep.pos.findClosestByPath(FIND_FLAGS) ||
@@ -41,27 +42,21 @@ class Base {
 		return this.creep.moveTo(rallyPoint);
 	}
 
-	withdrawFromSource(source, action) {
-		const setAction = action || "🧺";
-		this.setState({ action: setAction });
+	withdrawFromSource(source, action, resource) {
+		const Resource = resource || RESOURCE_ENERGY;
+		const Action = action || "🧺";
+		this.setState({ action: Action });
 
-		const setSource = source || FIND_DROPPED_RESOURCES;
-		const target = this.creep.pos.findClosestByPath(setSource);
-		const withdraw = target && this.creep.withdraw(target);
-		console.log(`
-         setAction: ${setAction}
-         setSource: ${setSource}
-         target: ${target}
-         withdraw: ${withdraw}
-      `);
+		const Source = source;
+		const target = this.creep.pos.findClosestByPath(Source);
 
-		if (
-			target &&
-			this.creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE
-		) {
-			this.creep.moveTo(target);
+		// console.log(target.store[RESOURCE_ENERGY]);
+
+		if (target && target.store[RESOURCE_ENERGY] > 0) {
+			if (this.creep.withdraw(target, Resource) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target);
+			}
 		} else {
-			this.setState({ action: undefined });
 			return this.moveToFlag();
 		}
 	}
@@ -82,7 +77,7 @@ class Base {
 		}
 	}
 
-	deposit(index = 0, flag) {
+	deposit(index = 0) {
 		this.setState({ action: "➡️" });
 		const targets = this.creep.room.find(FIND_STRUCTURES, {
 			filter: structure => {
