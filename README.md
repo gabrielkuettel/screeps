@@ -1,8 +1,9 @@
 #### Commands:
 
--  Compile: `grunt`
--  Configure `.screeps.json`
--  Change branches: `grunt screeps --branch=tutorial-1`
+-  compile: `grunt`
+-  configure `.screeps.json`
+-  change branches: `grunt screeps --branch=tutorial-1`
+-  import Lodash: `var _ = require('lodash')`
 
 #### Resources:
 
