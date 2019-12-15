@@ -6,7 +6,8 @@
       ```
       {
          "email": "gabrielkuettel@gmail.com",
-         "password": "123abc", "ptr": false,
+         "password": "123abc",
+         "ptr": false,
          "branch": "default"
       }
       ```
