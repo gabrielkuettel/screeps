@@ -13,7 +13,6 @@ class ManageBuildings {
 					room.createConstructionSite(path.x, path.y, STRUCTURE_ROAD);
 				});
 			});
-			// console.log(sources);
 		}
 	}
 }

@@ -69,7 +69,7 @@ class ManageCreeps {
 
 			if (role == "gravedigger") {
 				const gravedigger = new Gravedigger(creep, {
-					log: true,
+					log: false,
 					talk: true
 				});
 				gravedigger.run();

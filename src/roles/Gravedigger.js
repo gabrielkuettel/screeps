@@ -44,12 +44,10 @@ class Gravedigger extends Base {
 		}
 
 		if (digging) {
-			console.log("digging now");
 			return this.withdrawFromSource(FIND_TOMBSTONES, "⚰️");
 		}
 
 		if (!digging) {
-			console.log("deposit now");
 			return this.deposit(0);
 		}
 	}
