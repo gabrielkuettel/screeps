@@ -1,12 +1,15 @@
 const CreateCreeps = require("controllers_CreateCreeps");
 const ManageCreeps = require("controllers_ManageCreeps");
-
+const ManageBuildings = require("controllers_ManageBuildings");
 const Performance = require("performance_Performance");
 
 module.exports.loop = function() {
 	// for (let creep in Game.creeps) {
 	// 	console.log(Game.creeps[creep].name, Game.creeps[creep].ticksToLive);
 	// }
+
+	const manageBuildings = new ManageBuildings();
+	manageBuildings.createRoads();
 
 	const performance = new Performance();
 
@@ -75,13 +78,13 @@ module.exports.loop = function() {
 	const haulers = createHauler.spawn();
 	const harvestersSecondary = createHarvestersSecondary.spawn();
 
-	console.log(gravediggers);
-	console.log(builders);
-	console.log(repairers);
-	console.log(upgraders);
-	console.log(harvesters);
-	console.log(haulers);
-	console.log(harvestersSecondary);
+	// console.log(gravediggers);
+	// console.log(builders);
+	// console.log(repairers);
+	// console.log(upgraders);
+	// console.log(harvesters);
+	// console.log(haulers);
+	// console.log(harvestersSecondary);
 
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
