@@ -5,7 +5,6 @@ class Tower {
 
 	run() {
 		const tower = Game.getObjectById(this.id);
-		console.log(tower);
 		if (tower) {
 			this.controller(tower);
 		} else {
