@@ -119,9 +119,7 @@ class Base {
 	recycle() {
 		this.setState({ action: "💀" });
 		const { name } = this.creep;
-		console.log("recyuckubg");
 		const closestSpawn = this.creep.pos.findClosestByPath(FIND_MY_SPAWNS);
-		console.log("closest spawn", closestSpawn);
 		if (closestSpawn) {
 			if (closestSpawn.recycleCreep(this.creep) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(closestSpawn, {
