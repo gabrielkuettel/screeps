@@ -9,9 +9,13 @@ class ManageBuildings {
 
 			sources.forEach(source => {
 				const paths = room.findPath(spawn.pos, source.pos);
-				paths.forEach(path => {
-					room.createConstructionSite(path.x, path.y, STRUCTURE_ROAD);
-				});
+				for (let i = 0; i < paths.length - 1; i++) {
+					room.createConstructionSite(
+						paths[i].x,
+						paths[i].y,
+						STRUCTURE_ROAD
+					);
+				}
 			});
 		}
 	}

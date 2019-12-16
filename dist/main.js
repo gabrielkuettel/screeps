@@ -89,10 +89,10 @@ module.exports.loop = function() {
 	const manageCreeps = new ManageCreeps();
 	manageCreeps.init();
 
-	console.log(`Tick: ${Game.cpu.getUsed().toFixed(2)}`);
-	// console.log(`
-	//    Time: ${Game.time}
-	//    Average: ${performance.monitor(100)} / ${Game.cpu.limit}
-	//    Tick: ${Game.cpu.getUsed().toFixed(2)}
-	// `);
+	// console.log(`Tick: ${Game.cpu.getUsed().toFixed(2)}`);
+	console.log(`
+	   Time: ${Game.time}
+	   Average: ${performance.monitor(100)} / ${Game.cpu.limit}
+	   Tick: ${Game.cpu.getUsed().toFixed(2)}
+	`);
 };
