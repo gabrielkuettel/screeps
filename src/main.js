@@ -92,7 +92,7 @@ module.exports.loop = function() {
 	// console.log(`Tick: ${Game.cpu.getUsed().toFixed(2)}`);
 	console.log(`
 	   Time: ${Game.time}
-	   Average: ${performance.monitor(100)} / ${Game.cpu.limit}
+	   Average: ${performance.monitor(1000)} / ${Game.cpu.limit}
 	   Tick: ${Game.cpu.getUsed().toFixed(2)}
 	`);
 };
