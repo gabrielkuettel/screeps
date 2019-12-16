@@ -1,17 +1,20 @@
 const CreateCreeps = require("controllers_CreateCreeps");
 const ManageCreeps = require("controllers_ManageCreeps");
 const ManageBuildings = require("controllers_ManageBuildings");
+const Tower = require("structures_Tower");
 const Performance = require("performance_Performance");
 
 module.exports.loop = function() {
 	// for (let creep in Game.creeps) {
 	// 	console.log(Game.creeps[creep].name, Game.creeps[creep].ticksToLive);
 	// }
+	const performance = new Performance();
 
 	const manageBuildings = new ManageBuildings();
 	manageBuildings.createRoads();
 
-	const performance = new Performance();
+	const tower = new Tower("5de4ea56a7139ee789aa6f3e");
+	tower.run();
 
 	const createHarvesters = new CreateCreeps({
 		role: "harvester",
